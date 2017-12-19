@@ -29,10 +29,6 @@ class MainScreen extends React.Component {
     tabBarLabel: "My Routines"
   })
 
-  state = {
-    routines: ["Eat", "Sleep", "Codes", "Repeat"]
-  }
-
   render() {
     const { routines, navigation } = this.props
     const { navigate } = navigation
@@ -44,7 +40,7 @@ class MainScreen extends React.Component {
             routines.map((routine, index) => (
               <ListItem
                 key={index}
-                title={routine}
+                title={routine.title}
                 hideChevron
                 rightTitle={"10:10 AM"}
               />

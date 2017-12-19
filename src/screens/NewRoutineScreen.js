@@ -46,6 +46,7 @@ class NewRoutine extends React.Component {
       routineActions.addRoutine(this.state)
     )
 
+    this.refTitle.clearText()
     this.setState({ title: null })
   }
 
@@ -54,15 +55,16 @@ class NewRoutine extends React.Component {
   }
 
   render() {
-    console.log(this.props)
-
     return (
       <View style={styles.container}>
         <Text h3 style={styles.header}>New Routine</Text>
 
         <View style={styles.formGroup}>
           <FormLabel>Routine name</FormLabel>
-          <FormInput onChangeText={this.handleChange("title")} />
+          <FormInput
+            ref={(input) => this.refTitle = input}
+            onChangeText={(value) => this.setState({ title: value })}
+          />
         </View>
       </View>
     )
