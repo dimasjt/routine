@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Button as Btn } from "react-native"
 import { Button, Card, ListItem } from "react-native-elements"
 import { Constants } from "expo"
 import { Ionicons as Icon } from "@expo/vector-icons"
+import { connect } from "react-redux"
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -33,13 +34,14 @@ class MainScreen extends React.Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation
+    const { routines, navigation } = this.props
+    const { navigate } = navigation
 
     return (
       <View>
         <Card containerStyle={styles.cardContainer}>
           {
-            this.state.routines.map((routine, index) => (
+            routines.map((routine, index) => (
               <ListItem
                 key={index}
                 title={routine}
@@ -54,4 +56,4 @@ class MainScreen extends React.Component {
   }
 }
 
-export default MainScreen
+export default connect(state => state)(MainScreen)
