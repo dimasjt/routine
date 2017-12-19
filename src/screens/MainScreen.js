@@ -2,6 +2,7 @@ import React from "react"
 import { View, Text, StyleSheet, Button as Btn } from "react-native"
 import { Button, Card, ListItem } from "react-native-elements"
 import { Constants } from "expo"
+import { Ionicons as Icon } from "@expo/vector-icons"
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -12,9 +13,19 @@ const styles = StyleSheet.create({
 
 class MainScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: "My Routines",
     headerTitle: "My Routines",
-    headerRight: <Btn title="Add" onPress={() => navigation.navigate("NewRoutine")} />
+    headerRight: (
+      <Icon
+        name="ios-add"
+        style={{ marginRight: 15, padding: 6 }}
+        onPress={() => navigation.navigate("NewRoutine")}
+        size={32}
+      />
+    ),
+    tabBarIcon: () => (
+      <Icon name="ios-list-outline" size={52} />
+    ),
+    tabBarLabel: "My Routines"
   })
 
   state = {

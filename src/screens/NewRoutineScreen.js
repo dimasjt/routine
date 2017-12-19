@@ -2,6 +2,7 @@ import React from "react"
 import { View, StyleSheet, TextInput, Button as Btn } from "react-native"
 import { Text, FormInput, FormLabel } from "react-native-elements"
 import { Constants } from "expo"
+import { Ionicons as Icon } from "@expo/vector-icons"
 
 const styles = StyleSheet.create({
   header: {
@@ -14,7 +15,13 @@ const styles = StyleSheet.create({
 
 class NewRoutine extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    headerRight: <Btn title="Save" onPress={() => { }} />
+    headerRight: (
+      <Btn title="Save" onPress={() => { }} />
+    ),
+    tabBarIcon: () => (
+      <Icon name="ios-list-outline" size={52} />
+    ),
+    tabBarLabel: "My Routines",
   })
 
   render() {

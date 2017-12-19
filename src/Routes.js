@@ -18,9 +18,6 @@ const Routes = TabNavigator({
   Progress: {
     screen: ProgressScreen,
   },
-  // NewRoutine: {
-  //   screen: NewRoutineScreen,
-  // },
 }, {
     tabBarPosition: "bottom",
   })
