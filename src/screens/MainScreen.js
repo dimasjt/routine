@@ -1,12 +1,13 @@
 import React from "react"
 import { View, Text, StyleSheet, Button as Btn } from "react-native"
-import { Button } from "react-native-elements"
+import { Button, Card, ListItem } from "react-native-elements"
 import { Constants } from "expo"
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: Constants.statusBarHeight,
-  },
+  cardContainer: {
+    padding: 0,
+    margin: 0
+  }
 })
 
 class MainScreen extends React.Component {
@@ -16,13 +17,27 @@ class MainScreen extends React.Component {
     headerRight: <Btn title="Add" onPress={() => navigation.navigate("NewRoutine")} />
   })
 
+  state = {
+    routines: ["Eat", "Sleep", "Codes", "Repeat"]
+  }
+
   render() {
     const { navigate } = this.props.navigation
 
     return (
-      <View style={styles.container}>
-        <Text>MainScreen</Text>
-        <Button title="New" onPress={() => navigate("NewRoutine")} />
+      <View>
+        <Card containerStyle={styles.cardContainer}>
+          {
+            this.state.routines.map((routine, index) => (
+              <ListItem
+                key={index}
+                title={routine}
+                hideChevron
+                rightTitle={"10:10 AM"}
+              />
+            ))
+          }
+        </Card>
       </View>
     )
   }
