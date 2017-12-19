@@ -20,7 +20,9 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^6.2.1",
+    "babel-plugin-transform-inline-environment-variables": "^0.2.0",
     "expo": "^23.0.4",
+    "firebase": "^4.8.1",
     "react": "16.0.0",
     "react-native": "0.50.3",
     "react-native-elements": "^0.18.5",
