@@ -37,7 +37,7 @@ class MainScreen extends React.Component {
       <View>
         <Card containerStyle={styles.cardContainer}>
           {
-            routines.map((routine, index) => (
+            routines.data.map((routine, index) => (
               <ListItem
                 key={index}
                 title={routine.title}
