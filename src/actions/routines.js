@@ -1,6 +1,9 @@
 import {
   ADD_ROUTINE,
+  GET_ROUTINES,
 } from "../constants"
+
+import { db } from "../firebase"
 
 export function addRoutine(routine) {
   return (dispatch) => {
@@ -9,4 +12,17 @@ export function addRoutine(routine) {
       routine,
     })
   }
+}
+
+export const getRoutines = () => dispatch => {
+  db.child("routines").once("value").then(snapshot => {
+    dispatch({
+      type: GET_ROUTINES,
+      payload: snapshot.toJSON(),
+    })
+  }).catch(error => {
+    dispatch({
+      type: `${GET_ROUTINES}_REJECTED`,
+    })
+  })
 }

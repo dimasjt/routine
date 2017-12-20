@@ -5,6 +5,6 @@ import rootReducers from "../reducers"
 
 const middlewares = applyMiddleware(thunk)
 
-const store = createStore(rootReducers, middlewares)
+const store = createStore(rootReducers, {}, middlewares)
 
 export default store

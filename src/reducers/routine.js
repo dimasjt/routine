@@ -1,11 +1,23 @@
 import {
-  ADD_ROUTINE
+  ADD_ROUTINE,
+  GET_ROUTINES,
 } from "../constants"
 
-function routines(state = [], action) {
+const initialState = {
+  data: [],
+  isPending: false,
+  isRejected: false,
+  isFetched: false,
+}
+
+function routines(state = initialState, action) {
+  console.log("routine", action)
   switch (action.type) {
-    case ADD_ROUTINE:
-      return state.concat(action.routine)
+    case GET_ROUTINES:
+      return {
+        ...state,
+        data: state.data.concat(action.payload),
+      }
     default:
       return state
   }
