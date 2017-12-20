@@ -2,21 +2,34 @@ import React from "react"
 import { View, StyleSheet } from "react-native"
 import { Text, FormInput, FormLabel, Button } from "react-native-elements"
 
+import { auth } from "../firebase"
+
 const styles = StyleSheet.create({
   header: {
     padding: 15,
   },
-  formGroup: {
-    marginBottom: 10
-  },
-  marginBottom: {
-    marginBottom: 10,
-  },
 })
+
+import css from "../styles"
 
 class LoginScreen extends React.Component {
   static navigationOptions = {
     headerTitle: "Login",
+  }
+
+  state = {
+    email: "",
+    password: "",
+  }
+
+  handleRegister = () => {
+    const { email, password } = this.state
+    auth.signInAndRetrieveDataWithEmailAndPassword(email, password).then(result => {
+      this.props.navigation.navigate("Main")
+      console.log(result)
+    }).catch(error => {
+      console.log(error)
+    })
   }
 
   render() {
@@ -25,7 +38,7 @@ class LoginScreen extends React.Component {
 
     return (
       <View>
-        <View style={styles.formGroup}>
+        <View style={css.formGroup}>
           <FormLabel>Email</FormLabel>
           <FormInput
             ref={(input) => this.refEmail = input}
@@ -33,18 +46,19 @@ class LoginScreen extends React.Component {
           />
         </View>
 
-        <View style={styles.formGroup}>
+        <View style={css.formGroup}>
           <FormLabel>Password</FormLabel>
           <FormInput
             ref={(input) => this.refPassword = input}
+            secureTextEntry
             onChangeText={(value) => this.setState({ password: value })}
           />
         </View>
 
         <Button
           title="Login"
-          onPress={() => { }}
-          style={styles.marginBottom}
+          onPress={this.handleRegister}
+          style={css.formGroup}
         />
 
         <Button
