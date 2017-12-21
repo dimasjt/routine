@@ -1,9 +1,9 @@
 import React from "react"
-import { View, Text, StyleSheet, Button as Btn } from "react-native"
+import { View, StyleSheet } from "react-native"
 import { Button, Card, ListItem } from "react-native-elements"
-import { Constants } from "expo"
 import { Ionicons as Icon } from "@expo/vector-icons"
 import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
 import { getRoutines } from "../actions/routines"
 import { userLogout } from "../actions/users"
@@ -82,6 +82,11 @@ class MainScreen extends React.Component {
       </View>
     )
   }
+}
+
+MainScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
 }
 
 export default connect(state => state)(MainScreen)

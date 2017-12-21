@@ -1,16 +1,10 @@
 import React from "react"
-import { View, StyleSheet, Keyboard, AsyncStorage, Alert } from "react-native"
-import { Text, FormInput, FormLabel, Button } from "react-native-elements"
+import { View, Keyboard, Alert } from "react-native"
+import { FormInput, FormLabel, Button } from "react-native-elements"
 import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
-import { auth } from "../firebase"
 import { checkLogin, userLogin } from "../actions/users"
-
-const styles = StyleSheet.create({
-  header: {
-    padding: 15,
-  },
-})
 
 import css from "../styles"
 
@@ -26,14 +20,10 @@ class LoginScreen extends React.Component {
 
   componentWillMount() {
     this.props.dispatch(checkLogin())
-      .then(userData => {
+      .then(() => {
         this.props.navigation.navigate("MainRoute")
       })
       .catch(() => { })
-  }
-
-  componentWillReceiveProps(props) {
-    console.log("receiveProps", props)
   }
 
   handleLogin = () => {
@@ -83,6 +73,11 @@ class LoginScreen extends React.Component {
       </View>
     )
   }
+}
+
+LoginScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
 }
 
 export default connect(state => state)(LoginScreen)
