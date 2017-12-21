@@ -40,6 +40,8 @@ const Routes = TabNavigator({
       tabBarVisible: false,
     }
   },
-})
+}, {
+    initialRouteName: "Auth",
+  })
 
 export default Routes

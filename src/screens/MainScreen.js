@@ -46,12 +46,6 @@ class MainScreen extends React.Component {
     tabBarLabel: "My Routines"
   })
 
-  componentWillReceiveProps(props) {
-    // if (props.navigation.state.params.currentUser) {
-    //   this.fetchRoutines()
-    // }
-  }
-
   fetchRoutines = () => {
     this.props.dispatch(getRoutines())
   }
