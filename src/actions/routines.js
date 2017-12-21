@@ -6,7 +6,7 @@ import {
 import { auth, db } from "../firebase"
 
 export const addRoutine = (routine) => dispatch => {
-  db.child(`routines/${auth.currentUser.uid}`).set(routine)
+  db.child(`routines/${auth.currentUser.uid}`).push().set(routine)
     .then(snapshot => {
       console.log(snapshot)
     })
