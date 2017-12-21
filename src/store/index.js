@@ -10,10 +10,10 @@ let store = compose(
     thunk,
     logger,
   ),
-  autoRehydrate(),
+  // autoRehydrate(),
 )(createStore)(rootReducers)
 
 // const store = createStore(rootReducers, middlewares)
 
-persistStore(store)
+// persistStore(store)
 export default store

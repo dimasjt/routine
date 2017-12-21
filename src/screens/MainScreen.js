@@ -6,6 +6,7 @@ import { Ionicons as Icon } from "@expo/vector-icons"
 import { connect } from "react-redux"
 
 import { getRoutines } from "../actions/routines"
+import { userLogout } from "../actions/users"
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -13,6 +14,18 @@ const styles = StyleSheet.create({
     margin: 0
   }
 })
+
+const LogoutButton = connect(state => state)(({ dispatch, navigation }) => (
+  <Icon
+    name="ios-log-out"
+    style={{ marginLeft: 10, padding: 6 }}
+    onPress={() => {
+      dispatch(userLogout())
+      navigation.navigate("Login")
+    }}
+    size={32}
+  />
+))
 
 class MainScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -24,6 +37,9 @@ class MainScreen extends React.Component {
         onPress={() => navigation.navigate("NewRoutine")}
         size={32}
       />
+    ),
+    headerLeft: (
+      <LogoutButton navigation={navigation} />
     ),
     tabBarIcon: () => (
       <Icon name="ios-list-outline" size={52} />

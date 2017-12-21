@@ -1,10 +1,10 @@
 import React from "react"
-import { View, StyleSheet, Keyboard, AsyncStorage } from "react-native"
+import { View, StyleSheet, Keyboard, AsyncStorage, Alert } from "react-native"
 import { Text, FormInput, FormLabel, Button } from "react-native-elements"
 import { connect } from "react-redux"
 
 import { auth } from "../firebase"
-import { checkLogin } from "../actions/users"
+import { checkLogin, userLogin } from "../actions/users"
 
 const styles = StyleSheet.create({
   header: {
@@ -26,6 +26,10 @@ class LoginScreen extends React.Component {
 
   componentWillMount() {
     this.props.dispatch(checkLogin())
+      .then(userData => {
+        this.props.navigation.navigate("MainRoute")
+      })
+      .catch(() => { })
   }
 
   componentWillReceiveProps(props) {
@@ -33,14 +37,14 @@ class LoginScreen extends React.Component {
   }
 
   handleLogin = () => {
-    const { email, password } = this.state
-    auth.signInAndRetrieveDataWithEmailAndPassword(email, password).then(result => {
-      this.props.navigation.navigate("Main", { currentUser: auth.currentUser })
-      AsyncStorage.setItem("userData", JSON.stringify(auth.currentUser))
-      Keyboard.dismiss()
-    }).catch(error => {
-      console.log(error)
-    })
+    this.props.dispatch(userLogin(this.state))
+      .then(() => {
+        Keyboard.dismiss()
+        this.props.navigation.navigate("MainRoute")
+      })
+      .catch(error => {
+        Alert.alert("Login failed", error.message)
+      })
   }
 
   render() {

@@ -7,7 +7,7 @@ import LoginScreen from "./screens/LoginScreen"
 import RegisterScreen from "./screens/RegisterScreen"
 
 const MainRoute = TabNavigator({
-  Main: {
+  MainRoute: {
     screen: StackNavigator({
       Main: {
         screen: MainScreen,
