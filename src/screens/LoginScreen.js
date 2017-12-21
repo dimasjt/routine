@@ -1,5 +1,5 @@
 import React from "react"
-import { View, StyleSheet } from "react-native"
+import { View, StyleSheet, Keyboard } from "react-native"
 import { Text, FormInput, FormLabel, Button } from "react-native-elements"
 
 import { auth } from "../firebase"
@@ -22,11 +22,11 @@ class LoginScreen extends React.Component {
     password: "",
   }
 
-  handleRegister = () => {
+  handleLogin = () => {
     const { email, password } = this.state
     auth.signInAndRetrieveDataWithEmailAndPassword(email, password).then(result => {
       this.props.navigation.navigate("Main")
-      console.log(result)
+      Keyboard.dismiss()
     }).catch(error => {
       console.log(error)
     })
@@ -57,7 +57,7 @@ class LoginScreen extends React.Component {
 
         <Button
           title="Login"
-          onPress={this.handleRegister}
+          onPress={this.handleLogin}
           style={css.formGroup}
         />
 
