@@ -5,6 +5,8 @@ import { Constants } from "expo"
 import { Ionicons as Icon } from "@expo/vector-icons"
 import { connect } from "react-redux"
 
+import { getRoutines } from "../actions/routines"
+
 const styles = StyleSheet.create({
   cardContainer: {
     padding: 0,
@@ -29,6 +31,16 @@ class MainScreen extends React.Component {
     tabBarLabel: "My Routines"
   })
 
+  componentWillReceiveProps(props) {
+    // if (props.navigation.state.params.currentUser) {
+    //   this.fetchRoutines()
+    // }
+  }
+
+  fetchRoutines = () => {
+    this.props.dispatch(getRoutines())
+  }
+
   render() {
     const { routines, navigation } = this.props
     const { navigate } = navigation
@@ -47,6 +59,10 @@ class MainScreen extends React.Component {
             ))
           }
         </Card>
+        <Button
+          title="Fetch data"
+          onPress={this.fetchRoutines}
+        />
       </View>
     )
   }

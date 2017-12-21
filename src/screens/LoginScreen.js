@@ -1,8 +1,10 @@
 import React from "react"
-import { View, StyleSheet, Keyboard } from "react-native"
+import { View, StyleSheet, Keyboard, AsyncStorage } from "react-native"
 import { Text, FormInput, FormLabel, Button } from "react-native-elements"
+import { connect } from "react-redux"
 
 import { auth } from "../firebase"
+import { checkLogin } from "../actions/users"
 
 const styles = StyleSheet.create({
   header: {
@@ -22,10 +24,19 @@ class LoginScreen extends React.Component {
     password: "",
   }
 
+  componentWillMount() {
+    this.props.dispatch(checkLogin())
+  }
+
+  componentWillReceiveProps(props) {
+    console.log("receiveProps", props)
+  }
+
   handleLogin = () => {
     const { email, password } = this.state
     auth.signInAndRetrieveDataWithEmailAndPassword(email, password).then(result => {
-      this.props.navigation.navigate("Main")
+      this.props.navigation.navigate("Main", { currentUser: auth.currentUser })
+      AsyncStorage.setItem("userData", JSON.stringify(auth.currentUser))
       Keyboard.dismiss()
     }).catch(error => {
       console.log(error)
@@ -70,4 +81,4 @@ class LoginScreen extends React.Component {
   }
 }
 
-export default LoginScreen
+export default connect(state => state)(LoginScreen)

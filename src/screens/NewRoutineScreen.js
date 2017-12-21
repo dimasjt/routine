@@ -5,7 +5,7 @@ import { Constants } from "expo"
 import { Ionicons as Icon } from "@expo/vector-icons"
 import { connect } from "react-redux"
 
-import * as routineActions from "../actions/routines"
+import { addRoutine } from "../actions/routines"
 
 const styles = StyleSheet.create({
   header: {
@@ -43,7 +43,7 @@ class NewRoutine extends React.Component {
 
   handleSave = () => {
     this.props.dispatch(
-      routineActions.addRoutine(this.state)
+      addRoutine(this.state)
     )
 
     this.refTitle.clearText()

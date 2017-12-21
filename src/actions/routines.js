@@ -3,26 +3,30 @@ import {
   GET_ROUTINES,
 } from "../constants"
 
-import { db } from "../firebase"
+import { auth, db } from "../firebase"
 
-export function addRoutine(routine) {
-  return (dispatch) => {
-    dispatch({
-      type: ADD_ROUTINE,
-      routine,
+export const addRoutine = (routine) => dispatch => {
+  db.child(`routines/${auth.currentUser.uid}`).set(routine)
+    .then(snapshot => {
+      console.log(snapshot)
     })
-  }
+    .catch(error => {
+      console.log(error)
+    })
 }
 
 export const getRoutines = () => dispatch => {
-  db.child("routines").once("value").then(snapshot => {
-    dispatch({
-      type: GET_ROUTINES,
-      payload: snapshot.toJSON(),
+  if (!auth.currentUser) return
+  db.child(`routines/${auth.currentUser.uid}`).once("value")
+    .then(snapshot => {
+      dispatch({
+        type: GET_ROUTINES,
+        payload: snapshot.toJSON(),
+      })
     })
-  }).catch(error => {
-    dispatch({
-      type: `${GET_ROUTINES}_REJECTED`,
+    .catch(error => {
+      dispatch({
+        type: `${GET_ROUTINES}_REJECTED`,
+      })
     })
-  })
 }
