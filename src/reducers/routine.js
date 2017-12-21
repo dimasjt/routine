@@ -11,7 +11,6 @@ const initialState = {
 }
 
 function routines(state = initialState, action) {
-  console.log("routine", action)
   switch (action.type) {
     case GET_ROUTINES:
       return {

@@ -3,8 +3,7 @@ import { TabNavigator, StackNavigator } from "react-navigation"
 import MainScreen from "./screens/MainScreen"
 import ProgressScreen from "./screens/ProgressScreen"
 import NewRoutineScreen from "./screens/NewRoutineScreen"
-import LoginScreen from "./screens/LoginScreen"
-import RegisterScreen from "./screens/RegisterScreen"
+import AuthScreen from "./screens/AuthScreen"
 
 const MainRoute = TabNavigator({
   MainRoute: {
@@ -25,13 +24,10 @@ const MainRoute = TabNavigator({
   })
 
 const Routes = TabNavigator({
-  Login: {
+  Auth: {
     screen: StackNavigator({
       Login: {
-        screen: LoginScreen,
-      },
-      Register: {
-        screen: RegisterScreen,
+        screen: AuthScreen,
       },
     }),
     navigationOptions: {

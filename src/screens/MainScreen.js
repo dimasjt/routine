@@ -6,7 +6,7 @@ import { connect } from "react-redux"
 import PropTypes from "prop-types"
 
 import { getRoutines } from "../actions/routines"
-import { userLogout } from "../actions/users"
+import { auth } from "../firebase"
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -15,17 +15,16 @@ const styles = StyleSheet.create({
   }
 })
 
-const LogoutButton = connect(state => state)(({ dispatch, navigation }) => (
+const LogoutButton = ({ navigation }) => (
   <Icon
     name="ios-log-out"
     style={{ marginLeft: 10, padding: 6 }}
     onPress={() => {
-      dispatch(userLogout())
-      navigation.navigate("Login")
+      auth.signOut().then(() => navigation.navigate("Auth"))
     }}
     size={32}
   />
-))
+)
 
 class MainScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
