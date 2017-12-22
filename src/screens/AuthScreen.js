@@ -1,13 +1,17 @@
 import React from "react"
 import { View } from "react-native"
-import { Button, Text } from "react-native-elements"
 import Expo from "expo"
+
+import { Button, Text } from "../components/ui"
 
 import firebase, { auth } from "../firebase"
 
 class AuthScreen extends React.Component {
   static navigationOptions = {
     headerTitle: "Routines",
+    headerStyle: {
+      backgroundColor: "#FFD800"
+    },
   }
 
   componentDidMount() {
@@ -38,10 +42,14 @@ class AuthScreen extends React.Component {
   render() {
     return (
       <View>
-        <Text>Welcome to Routines</Text>
+        <View style={{ margin: 10, marginBottom: 30 }}>
+          <Text h2>Welcome to Routines</Text>
+          <Text>The secret of your success is found in your daily routine</Text>
+        </View>
         <Button
           title="Login with Facebook"
           onPress={this.handleLogin}
+          large
         />
       </View>
     )

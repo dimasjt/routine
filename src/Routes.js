@@ -5,6 +5,8 @@ import ProgressScreen from "./screens/ProgressScreen"
 import NewRoutineScreen from "./screens/NewRoutineScreen"
 import AuthScreen from "./screens/AuthScreen"
 
+import * as colors from "./styles/variables"
+
 const MainRoute = TabNavigator({
   MainRoute: {
     screen: StackNavigator({
@@ -29,7 +31,11 @@ const Routes = TabNavigator({
       Login: {
         screen: AuthScreen,
       },
-    }),
+    }, {
+        cardStyle: {
+          backgroundColor: colors.dark,
+        }
+      }),
     navigationOptions: {
       tabBarVisible: false,
     }
