@@ -5,6 +5,8 @@ import { Ionicons as Icon } from "@expo/vector-icons"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 
+import css from "../styles"
+
 import { getRoutines } from "../actions/routines"
 import { auth } from "../firebase"
 
@@ -43,7 +45,8 @@ class MainScreen extends React.Component {
     tabBarIcon: () => (
       <Icon name="ios-list-outline" size={52} />
     ),
-    tabBarLabel: "My Routines"
+    tabBarLabel: "My Routines",
+    headerStyle: css.header,
   })
 
   fetchRoutines = () => {

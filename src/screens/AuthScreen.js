@@ -3,6 +3,7 @@ import { View } from "react-native"
 import Expo from "expo"
 
 import { Button, Text } from "../components/ui"
+import { yellow } from "../styles/variables"
 
 import firebase, { auth } from "../firebase"
 
@@ -10,7 +11,7 @@ class AuthScreen extends React.Component {
   static navigationOptions = {
     headerTitle: "Routines",
     headerStyle: {
-      backgroundColor: "#FFD800"
+      backgroundColor: yellow,
     },
   }
 
