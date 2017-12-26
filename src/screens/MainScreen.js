@@ -1,9 +1,10 @@
 import React from "react"
 import { View, StyleSheet } from "react-native"
-import { Button, Card, ListItem } from "react-native-elements"
-import { Ionicons as Icon } from "@expo/vector-icons"
+import { Card, ListItem } from "react-native-elements"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
+
+import Icon from "../components/Icon"
 
 import css from "../styles"
 
@@ -53,6 +54,14 @@ class MainScreen extends React.Component {
     this.props.dispatch(getRoutines())
   }
 
+  componentDidMount() {
+    auth.onAuthStateChanged(() => {
+      if (auth.currentUser) {
+        this.props.dispatch(getRoutines())
+      }
+    })
+  }
+
   render() {
     const { routines, navigation } = this.props
     const { navigate } = navigation
@@ -71,10 +80,6 @@ class MainScreen extends React.Component {
             ))
           }
         </Card>
-        <Button
-          title="Fetch data"
-          onPress={this.fetchRoutines}
-        />
       </View>
     )
   }

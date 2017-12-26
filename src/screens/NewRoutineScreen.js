@@ -1,15 +1,18 @@
 import React from "react"
-import { View, StyleSheet, TextInput, Button as Btn } from "react-native"
+import { View, StyleSheet, Button as Btn } from "react-native"
 import { Text, FormInput, FormLabel } from "react-native-elements"
-import { Constants } from "expo"
 import { Ionicons as Icon } from "@expo/vector-icons"
 import { connect } from "react-redux"
+
+import css from "../styles"
+import * as colors from "../styles/variables"
 
 import { addRoutine } from "../actions/routines"
 
 const styles = StyleSheet.create({
   header: {
     padding: 15,
+    color: colors.white,
   },
   formGroup: {
     marginBottom: 10
@@ -22,12 +25,14 @@ class NewRoutine extends React.Component {
 
     return {
       headerRight: (
-        <Btn title="Save" onPress={params.handleSave ? params.handleSave : () => { console.log("nothing") }} />
+        <Btn title="Save" onPress={params.handleSave ? params.handleSave : () => { }} />
       ),
       tabBarIcon: () => (
         <Icon name="ios-list-outline" size={52} />
       ),
       tabBarLabel: "My Routines",
+      headerTitle: "New Routine",
+      headerStyle: css.header,
     }
   }
 

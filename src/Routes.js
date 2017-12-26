@@ -6,6 +6,7 @@ import NewRoutineScreen from "./screens/NewRoutineScreen"
 import AuthScreen from "./screens/AuthScreen"
 
 import css from "./styles"
+import * as colors from "./styles/variables"
 
 const MainRoute = TabNavigator({
   MainRoute: {
@@ -25,6 +26,13 @@ const MainRoute = TabNavigator({
   },
 }, {
     tabBarPosition: "bottom",
+    tabBarOptions: {
+      style: {
+        backgroundColor: colors.yellow,
+      },
+      inactiveTintColor: colors.dark,
+      activeTintColor: colors.dark,
+    },
   })
 
 const Routes = TabNavigator({
@@ -48,6 +56,8 @@ const Routes = TabNavigator({
   },
 }, {
     initialRouteName: "Auth",
+    swipeEnabled: false,
+    animationEnabled: false,
   })
 
 export default Routes

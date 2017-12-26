@@ -1,19 +1,19 @@
 import React from "react"
+import { StyleSheet } from "react-native"
 import { Text } from "react-native-elements"
 
 import * as colors from "../styles/variables"
 
-const styles = {
-  color: colors.white,
-}
+const styles = StyleSheet.create({
+  text: {
+    color: colors.white,
+  }
+})
 
 const CustomText = (props) => {
-  const textStyles = Object.assign({}, props.style, styles)
-  console.log(textStyles)
-
   return (
     <Text
-      style={textStyles}
+      style={[styles.text, props.style]}
       {...props}
     >
       {props.children}

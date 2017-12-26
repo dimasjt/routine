@@ -1,10 +1,11 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react"
 import { Provider } from "react-redux"
 
 import Routes from "./src/Routes"
 
 import store from "./src/store"
+
+console.ignoredYellowBox = ["Setting a timer"]
 
 const App = () => (
   <Provider store={store}>
