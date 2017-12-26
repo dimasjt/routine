@@ -1,8 +1,10 @@
 import React from "react"
-import { View, StyleSheet, Button as Btn } from "react-native"
+import { View, StyleSheet, Button as Btn, Picker } from "react-native"
 import { Text, FormInput, FormLabel } from "react-native-elements"
 import { Ionicons as Icon } from "@expo/vector-icons"
 import { connect } from "react-redux"
+import DatePicker from "react-native-datepicker"
+import PropTypes from "prop-types"
 
 import css from "../styles"
 import * as colors from "../styles/variables"
@@ -16,6 +18,12 @@ const styles = StyleSheet.create({
   },
   formGroup: {
     marginBottom: 10
+  },
+  timepickerWrapper: {
+    margin: 15,
+  },
+  timepicker: {
+    width: "100%"
   },
 })
 
@@ -71,9 +79,35 @@ class NewRoutine extends React.Component {
             onChangeText={(value) => this.setState({ title: value })}
           />
         </View>
-      </View>
+
+        <View style={styles.formGroup}>
+        </View>
+
+        <View style={[styles.formGroup, styles.timepickerWrapper]}>
+          <DatePicker
+            style={styles.timepicker}
+            mode="time"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            showIcon={false}
+            customStyles={{
+              placeholderText: {
+                color: colors.white,
+              },
+              dateText: {
+                color: colors.white,
+              },
+            }}
+          />
+        </View>
+      </View >
     )
   }
+}
+
+NewRoutine.propTypes = {
+  dispatch: PropTypes.func,
+  navigation: PropTypes.object,
 }
 
 export default connect(state => state)(NewRoutine)
